@@ -1,0 +1,58 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="PageFactoryModel_PageFactory">
+
+	<test name="testSmoke" preserve-order="true" parallel="false">
+		<groups>
+			<run>
+				<include name="prerequisite" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.intelegencia.tests.testSmoke.testTeacher">
+				<methods>
+					<include name="testTeacherLogin" />
+					<include name="testTeacherPostOnCourseWall" />
+					<include name="testTeacherCreatesASocialGroup" />
+					<include name="testTeacherPostOnStudentWall" />
+					<include name="testTeacherCreateLiveSession" />
+					<include name="testTeacherUploadFiles" />
+					<include name="testTeacherVerifyFilesInPortfolio" />
+					<include name="testTeacherCreateLiveSessionWithSocGrp" />
+					<include name="testTeacherSignOut" />
+				</methods>
+			</class>
+			<class name="com.intelegencia.tests.testSmoke.testStudent">
+				<methods>
+					<include name="testStudentLogin" />
+					<include name="testStudentJoinTeacherSocGrp" />
+					<include name="testStudentPostOnTeacherSocGrp" />
+					<include name="testStudentCommentOnTeacherSocGrp" />
+					<include name="testStudentCreateLiveSessionWithinTeacherSocGrp" />
+					<include name="testStudentCreatesASocialGroup" />
+					<include name="testStudentVerifyTeacherFiles" />
+					<include name="testStudentAttemptQuiz" />
+					<include name="testStudentSignOut" />
+				</methods>
+			</class>
+			<class name="com.intelegencia.tests.testSmoke.testTeacher1">
+				<methods>
+					<include name="testTeacherLogin" />
+					<include name="testTeacherJoinStudentSocialGroup" />
+					<include name="testTeacherLeavesStudentSocialGroup" />
+					<include name="testTeacherDeletesOwnSocialGroup" />
+					<include name="testTeacherDeleteFiles" />
+					<include name="testTeacherSignOut" />
+				</methods>
+			</class>
+			<class name="com.intelegencia.tests.testSmoke.testStudent1">
+				<methods>
+					<include name="testStudentLogin" />
+					<include name="testStudentDeletesOwnSocialGroup" />
+					<include name="testStudentSignOut"/>
+				</methods>
+			</class>
+		</classes>
+
+	</test>
+
+</suite>
