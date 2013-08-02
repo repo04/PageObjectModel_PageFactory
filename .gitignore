@@ -1,0 +1,14 @@
+bin/*
+build/*
+C/*
+.settings/*
+nbproject/*
+screenshots/*
+chromedriver.log
+test-output/*
+XSLT_Reports/*
+.classpath
+.project
+velocity.log
+ExecutionCommand.txt
+src/com/intelegencia/tests/config/*
