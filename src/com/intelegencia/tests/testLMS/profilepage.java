@@ -4,12 +4,11 @@
  */
 package com.intelegencia.tests.testLMS;
 
+import com.intelegencia.tests.utility.Constants;
+import com.intelegencia.tests.utility.TestUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import com.intelegencia.tests.utility.Constants;
-import com.intelegencia.tests.utility.TestUtil;
 
 /**
  * 

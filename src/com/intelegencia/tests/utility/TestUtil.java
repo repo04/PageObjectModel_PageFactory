@@ -25,7 +25,9 @@ public class TestUtil {
 
     /**
      *
-     *isExecutable() is a method which will check whether the test we are executing has a runmode Y(yes)
+     * isExecutable() is a method which will check whether the test we are
+     * executing has a runmode Y(yes)
+     *
      * @param testName
      * @param xls
      * @return
@@ -44,7 +46,8 @@ public class TestUtil {
     }
 
     /**
-     *takeScreenShot() is a method which takes screenshot for a particular test
+     * takeScreenShot() is a method which takes screenshot for a particular test
+     *
      * @param fileName
      */
     public static void takeScreenShot(String fileName) {
@@ -56,66 +59,64 @@ public class TestUtil {
             e.printStackTrace();
         }
     }
-    
-    
+
     /**
-     * clickbyJavaScript() is a method which clicks the webelement when webdriver is unable to identify the 
+     * clickbyJavaScript() is a method which clicks the webelement when
+     * webdriver is unable to identify the
+     *
      * @param fileName
      */
     public static void clickByJavaScript(String XPATH) {
         WebElement hiddenElement = Base.driver.findElement(By.xpath(XPATH));
         ((JavascriptExecutor) Base.driver).executeScript("arguments[0].click()", hiddenElement);
     }
-    
-  
-    
+
     public static void verifyCurrentUrl(String textInUrl) {
-    	try{
-        if (!Base.driver.getCurrentUrl().contains(textInUrl));
-        }catch(Throwable e){
-			ErrorUtil.addVerificationFailure(e);         
+        try {
+            if (!Base.driver.getCurrentUrl().contains(textInUrl));
+        } catch (Throwable e) {
+            ErrorUtil.addVerificationFailure(e);
         }
     }
-    
-    
+
     public static void actionBuilderClick(String path) {
         WebElement elm = Base.driver.findElement(By.xpath(path));
         org.openqa.selenium.interactions.Actions builder = new org.openqa.selenium.interactions.Actions(Base.driver);
         builder.click(elm).perform();
     }
-    
+
     public static void isElementPresentContainsTextByXPATH(String elementText) {
         new WebDriverWait(Base.driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text(),'" + elementText + "')]")));
     }
-    
-    
+
     public static void illegalStateException(String message) {
         throw new IllegalStateException(message);
     }
-    
-    
+
     public static void isElementPresentStartsWithTextByXPATH(String elementText) {
         new WebDriverWait(Base.driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[starts-with(text(),'" + elementText + "')]")));
     }
-    
+
     public static void isElementClickableByXpath(String elementClickable, int time) {
         new WebDriverWait(Base.driver, time).until(ExpectedConditions.elementToBeClickable(By.xpath(elementClickable)));
     }
-    
+
     public static void isElementPresentByXPATH(String elementByXPATH) {
         new WebDriverWait(Base.driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.xpath(elementByXPATH)));
     }
-    
+
     public static void isTextPresentByCSS(String css, String text) {
         new WebDriverWait(Base.driver, 60).until(ExpectedConditions.textToBePresentInElement(By.cssSelector(css), text));
     }
-    
+
     public static void isTextPresentByXPATH(String path, String text) {
         new WebDriverWait(Base.driver, 60).until(ExpectedConditions.textToBePresentInElement(By.xpath(path), text));
     }
-    
+
     /**
-     *getData() is a method which will get data from the data provider and pas sthe data to our tests to get executed
+     * getData() is a method which will get data from the data provider and pass
+     * the data to our tests to get executed
+     *
      * @param testName
      * @param xls
      * @return
@@ -134,14 +135,14 @@ public class TestUtil {
                 break;
             }
         }
-       // System.out.println("Test " + testName + " starts from " + testStartRowNum);
+        // System.out.println("Test " + testName + " starts from " + testStartRowNum);
 
         int colStartRowNum = testStartRowNum + 1;
         int totalCols = 0;
         while (!xls.getCellData("Test Data", totalCols, colStartRowNum).equals("")) {
             totalCols++;
         }
-       // System.out.println("Total Cols in test " + testName + " are " + totalCols);
+        // System.out.println("Total Cols in test " + testName + " are " + totalCols);
 
         //rows
         int dataStartRowNum = testStartRowNum + 2;
@@ -149,24 +150,25 @@ public class TestUtil {
         while (!xls.getCellData("Test Data", 0, dataStartRowNum + totalRows).equals("")) {
             totalRows++;
         }
-       // System.out.println("Total Rows in test " + testName + " are " + totalRows);
+        // System.out.println("Total Rows in test " + testName + " are " + totalRows);
 
-      //  System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        //  System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         // extract data
         Object[][] data = new Object[totalRows][1];
         int index = 0;
-        Hashtable<String, String> table = null;
+        Hashtable<String, String> table;
+        table = null;
         for (int rNum = dataStartRowNum; rNum < (dataStartRowNum + totalRows); rNum++) {
-            table = new Hashtable<String, String>();
+            table = new Hashtable<>();
             for (int cNum = 0; cNum < totalCols; cNum++) {
                 table.put(xls.getCellData("Test Data", cNum, colStartRowNum), xls.getCellData("Test Data", cNum, rNum));
-              //  System.out.print(xls.getCellData("Test Data", cNum, rNum) + " -- ");
+                //  System.out.print(xls.getCellData("Test Data", cNum, rNum) + " -- ");
             }
             data[index][0] = table;
             index++;
-           // System.out.println();
+            // System.out.println();
         }
-      //  System.out.println("done");
+        //  System.out.println("done");
         return data;
     }
 }
